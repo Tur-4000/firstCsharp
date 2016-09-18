@@ -9,37 +9,46 @@ namespace TurtleTraining
 {
     class Program
     {
-        static void WriteT(int a, int b)
+        static void WriteT(int x, int y, int size)
         {
             // Напишем букву Т
+            Turtle.X = x;
+            Turtle.Y = y;
+
             Turtle.Angle = 0;
-            Turtle.Move(a);
+            Turtle.Move(size);
             Turtle.TurnLeft();
-            Turtle.Move(b);
+            Turtle.Move(size / 3);
             Turtle.Angle = 90;
-            Turtle.Move(b*2);
+            Turtle.Move(size / 3 *2);
         }
 
-        static void WriteO(int a, int b)
+        static void WriteO(int x, int y, int size)
         {
+            Turtle.X = x;
+            Turtle.Y = y;
+            int o = size - size / 3;
             Turtle.Angle = 0;
             for (int i = 0; i < 2; i++)
             {
-                Turtle.Move(a);
+                Turtle.Move(size);
                 Turtle.TurnRight();
-                Turtle.Move(b);
+                Turtle.Move(o);
                 Turtle.TurnRight();
             }
         }
 
-        static void WriteR(int a, int b)
+        static void WriteR(int x, int y, int size)
         {
+            Turtle.X = x;
+            Turtle.Y = y;
             Turtle.Angle = 0;
-            Turtle.Move(a);
-            for(int i=0; i < 3; i++)
+            Turtle.Move(size);
+            int o = size - size / 3;
+            for (int i=0; i < 3; i++)
             {
                 Turtle.TurnRight();
-                Turtle.Move(b);
+                Turtle.Move(o);
             }
 
         }
@@ -47,27 +56,15 @@ namespace TurtleTraining
         static void Main(string[] args)
         {
             Turtle.Speed = 8;
-            Turtle.X = 200;
-            Turtle.Y = 200;
+            
 
-            WriteT(120, 40);
+            WriteT(200, 200, 120);
 
-            // Пишем букву О
-            Turtle.X = 240;
-            Turtle.Y = 200;
+            WriteO(240, 200, 60);
 
-            WriteO(60, 40);
+            WriteR(300, 200, 60);
 
-            // Пишем букву P
-            Turtle.X = 300;
-            Turtle.Y = 200;
-
-            WriteR(60, 40);
-
-            Turtle.X = 370;
-            Turtle.Y = 200;
-
-            WriteT(60, 20);
+            WriteT(370, 200, 60);
 
             //for (int i = 0; i < 6; i++)
             //{
