@@ -50,7 +50,7 @@ namespace TurtleTraining
             Turtle.X = 200;
             Turtle.Y = 200;
 
-            WriteT(60, 20);
+            WriteT(120, 40);
 
             // Пишем букву О
             Turtle.X = 240;
