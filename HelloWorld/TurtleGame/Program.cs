@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.SmallBasic.Library;
 
 namespace TurtleGame
@@ -11,17 +7,30 @@ namespace TurtleGame
     {
         static void Main(string[] args)
         {
+            GraphicsWindow.Title = "Turtle Game";
             GraphicsWindow.KeyDown += GraphicsWindow_KeyDown;
             Turtle.PenUp();
 
             GraphicsWindow.BrushColor = "Red";
-            var eat = Shapes.AddRectangle(10, 10);
+            var eat = Shapes.AddEllipse(10, 10);
             Shapes.Move(eat, 200, 200);
+            Random rnd = new Random();
 
             while (true)
-            {
+            {                
                 Turtle.Speed = 5;                
-                Turtle.Move(10);
+                Turtle.Move(1); // Шаг движения черепашки               
+                // Находим координаты верхнего левого угла "еды"
+                int eatX = Shapes.GetLeft(eat);
+                int eatY = Shapes.GetTop(eat);
+                // Сверяем координаты "еды" и черепашки и при совпадении 
+                // премещаем "еду" случайным образом
+                if(Turtle.X > eatX-1 && Turtle.X < eatX+11 && Turtle.Y > eatY-1 && Turtle.Y < eatY+11)
+                {
+                    Shapes.Move(eat, rnd.Next(1, GraphicsWindow.Width), 
+                        rnd.Next(1, GraphicsWindow.Height));
+                    Microsoft.SmallBasic.Library.Program.Delay(10);
+                }
             }
         }
 
